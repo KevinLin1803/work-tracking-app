@@ -1,39 +1,71 @@
 :root {
-  --red-top: #ce1f2a;      /* Chinese red (中国红) */
-  --red-bottom: #a3141b;   /* deeper red for gradient depth */
-  --gold: #f3cc5c;         /* accent + button */
-  --gold-strong: #e8b923;
-  --ink: #fff3ee;          /* warm white text */
-  --muted: rgba(255, 255, 255, 0.78);
-  --border: rgba(255, 255, 255, 0.18);
-  --field-bg: rgba(0, 0, 0, 0.20);
+  --lacquer-top: #8c1d1d;   /* cinnabar lacquer */
+  --lacquer-bot: #5c1512;   /* deep oxblood */
+  --gold: #d9a94e;          /* antique gold leaf */
+  --gold-soft: #e8c77e;
+  --ink: #f7ece2;           /* warm rice-paper */
+  --muted: rgba(247, 236, 226, 0.60);
+  --hair: rgba(217, 169, 78, 0.45);
+  --field: rgba(0, 0, 0, 0.22);
+  --serif: ui-serif, "New York", Georgia, serif;
+  --sans: -apple-system, system-ui, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, monospace;
 }
 * { box-sizing: border-box; }
-html, body { margin: 0; height: 100%; background: transparent; font-family: -apple-system, system-ui, sans-serif; }
+html, body { margin: 0; height: 100%; background: transparent; font-family: var(--sans); }
 body { -webkit-app-region: drag; padding: 8px; }
+
 .card {
-  background: linear-gradient(160deg, var(--red-top), var(--red-bottom));
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 14px 16px;
-  box-shadow: 0 12px 34px rgba(120, 12, 16, 0.45);
+  position: relative;
   height: 100%;
+  border-radius: 16px;
+  padding: 16px 18px;
+  background: linear-gradient(157deg, var(--lacquer-top), var(--lacquer-bot));
+  border: 1px solid var(--hair);
+  box-shadow: 0 14px 38px rgba(70, 8, 10, 0.5);
+  animation: rise 0.26s ease both;
 }
-.eyebrow { font-size: 10px; letter-spacing: 0.16em; color: var(--gold); font-weight: 700; }
-.label { color: var(--ink); font-size: 15px; font-weight: 600; margin: 6px 0 10px; line-height: 1.25; }
+/* Signature: a fine gold inlay frame, inset like a lacquer box edge. */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(217, 169, 78, 0.28);
+  border-radius: 11px;
+  pointer-events: none;
+}
+@keyframes rise { from { opacity: 0; transform: translateY(-6px) scale(0.985); } }
+@media (prefers-reduced-motion: reduce) { .card { animation: none; } }
+
+.eyebrow {
+  display: flex; align-items: center; gap: 7px;
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em;
+  color: var(--gold); font-weight: 700; text-transform: uppercase;
+}
+/* Small gold seal mark. */
+.eyebrow::before {
+  content: ""; width: 9px; height: 9px; border-radius: 2px;
+  background: var(--gold); box-shadow: 0 0 0 2px rgba(217, 169, 78, 0.25);
+}
+.label {
+  font-family: var(--serif); color: var(--ink); font-size: 18px;
+  font-weight: 600; line-height: 1.22; margin: 9px 0 12px; letter-spacing: -0.01em;
+}
 form { -webkit-app-region: no-drag; }
 textarea {
-  width: 100%; resize: none; border-radius: 9px; border: 1px solid var(--border);
-  background: var(--field-bg); color: var(--ink); padding: 9px 10px; font-size: 13px;
-  font-family: inherit; outline: none;
+  width: 100%; resize: none; border-radius: 10px; border: 1px solid var(--hair);
+  background: var(--field); color: var(--ink); padding: 10px 11px; font-size: 13px;
+  font-family: var(--sans); outline: none; line-height: 1.4;
 }
-textarea::placeholder { color: rgba(255, 255, 255, 0.55); }
-textarea:focus { border-color: var(--gold); }
-.row { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
-.hint { color: var(--muted); font-size: 11px; }
+textarea::placeholder { color: rgba(247, 236, 226, 0.42); }
+textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(217, 169, 78, 0.14); }
+.row { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; }
+.hint { color: var(--muted); font-size: 11px; font-family: var(--mono); letter-spacing: 0.02em; }
 button {
   -webkit-app-region: no-drag;
-  background: var(--gold); color: #7c1015; border: none; border-radius: 8px;
-  padding: 7px 16px; font-size: 13px; font-weight: 700; cursor: pointer;
+  background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+  color: #5c1512; border: none; border-radius: 9px; padding: 8px 18px;
+  font-size: 13px; font-weight: 700; cursor: pointer; letter-spacing: 0.01em;
 }
-button:hover { background: var(--gold-strong); }
+button:hover { filter: brightness(1.06); }
+button:active { transform: translateY(1px); }
