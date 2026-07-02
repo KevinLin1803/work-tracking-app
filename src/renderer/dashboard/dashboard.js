@@ -1,0 +1,73 @@
+let offset = 0;
+let chart = null;
+
+function hourRange(hour) {
+  const f = ((hour - 1 + 11) % 12) + 1;
+  const t = ((hour + 11) % 12) + 1;
+  return `${f}${hour - 1 < 12 ? 'am' : 'pm'}–${t}${hour < 12 ? 'am' : 'pm'}`;
+}
+
+function drawChart(week) {
+  const labels = week.map((d) => d.label);
+  const data = week.map((d) => d.achievementCount);
+  const colors = week.map((d) => (d.isActive ? '#6ea8fe' : '#39405255'));
+  const ctx = document.getElementById('chart');
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'bar',
+    data: { labels, datasets: [{ label: 'Achievements', data, backgroundColor: colors, borderRadius: 6 }] },
+    options: {
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { beginAtZero: true, ticks: { precision: 0, color: '#8b93a4' }, grid: { color: '#232833' } },
+        x: { ticks: { color: '#8b93a4' }, grid: { display: false } },
+      },
+    },
+  });
+}
+
+function drawCards(week) {
+  const el = document.getElementById('cards');
+  el.innerHTML = '';
+  const shown = week.filter((d) => d.isActive || d.achievementCount > 0 || d.learning);
+  for (const d of shown) {
+    const card = document.createElement('div');
+    card.className = 'daycard' + (d.isActive ? ' active' : '');
+    const items = d.achievements.map((a) => `<li><b>${hourRange(a.hour)}</b> — ${escapeHtml(a.text)}</li>`).join('');
+    card.innerHTML = `
+      <h3>${d.label}</h3>
+      <div class="date">${d.dateKey}</div>
+      ${d.primaryGoal ? `<div class="goal">Goal: ${escapeHtml(d.primaryGoal)}</div>` : ''}
+      ${items ? `<ul>${items}</ul>` : '<div class="empty">No achievements logged</div>'}
+      <div class="learn"><span class="k">LEARNED</span><br/>${d.learning ? escapeHtml(d.learning) : '<span class="empty">—</span>'}</div>
+    `;
+    el.appendChild(card);
+  }
+  if (shown.length === 0) el.innerHTML = '<div class="empty">Nothing logged this week yet.</div>';
+}
+
+function drawTotals(week) {
+  const totalAch = week.reduce((s, d) => s + d.achievementCount, 0);
+  const totalLearn = week.filter((d) => d.learning).length;
+  document.getElementById('totalAch').textContent = totalAch;
+  document.getElementById('totalLearn').textContent = totalLearn;
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+}
+
+async function load() {
+  const week = await window.api.getWeek(offset);
+  document.getElementById('weeklabel').textContent =
+    offset === 0 ? 'This week' : offset < 0 ? `${-offset} week${offset === -1 ? '' : 's'} ago` : `${offset} week${offset === 1 ? '' : 's'} ahead`;
+  drawTotals(week);
+  drawChart(week);
+  drawCards(week);
+}
+
+document.getElementById('prev').onclick = () => { offset -= 1; load(); };
+document.getElementById('next').onclick = () => { offset += 1; load(); };
+document.getElementById('today').onclick = () => { offset = 0; load(); };
+
+load();

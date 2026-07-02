@@ -1,0 +1,39 @@
+:root {
+  --bg: #0f1116;
+  --panel: #171a22;
+  --ink: #f2f4f8;
+  --muted: #8b93a4;
+  --accent: #6ea8fe;
+  --accent-soft: #24304a;
+  --border: #242833;
+  --learn: #f2b56b;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, system-ui, sans-serif; padding: 24px 28px 40px;
+}
+header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 20px; }
+.eyebrow { font-size: 11px; letter-spacing: 0.16em; color: var(--accent); font-weight: 700; }
+h1 { margin: 4px 0 0; font-size: 26px; }
+.nav button {
+  background: var(--panel); color: var(--ink); border: 1px solid var(--border);
+  border-radius: 8px; padding: 7px 12px; margin-left: 6px; cursor: pointer; font-size: 13px;
+}
+.nav button:hover { border-color: var(--accent); }
+.totals { display: flex; gap: 14px; margin-bottom: 18px; }
+.stat { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; min-width: 130px; }
+.num { font-size: 30px; font-weight: 700; }
+.cap { color: var(--muted); font-size: 12px; margin-top: 2px; }
+.chartwrap { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 20px; }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.daycard { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+.daycard.active { border-color: var(--accent-soft); }
+.daycard h3 { margin: 0 0 2px; font-size: 15px; }
+.daycard .date { color: var(--muted); font-size: 11px; margin-bottom: 8px; }
+.daycard .goal { color: var(--muted); font-size: 12px; font-style: italic; margin-bottom: 8px; }
+.daycard ul { margin: 0 0 8px; padding-left: 18px; }
+.daycard li { font-size: 13px; margin-bottom: 3px; }
+.learn { border-top: 1px dashed var(--border); padding-top: 8px; font-size: 12px; }
+.learn .k { color: var(--learn); font-weight: 700; letter-spacing: 0.05em; font-size: 10px; }
+.empty { color: var(--muted); font-size: 12px; }

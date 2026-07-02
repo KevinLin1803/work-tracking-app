@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline';" />
+  <link rel="stylesheet" href="settings.css" />
+</head>
+<body>
+  <div class="eyebrow">SETTINGS</div>
+  <h1>Work Tracker</h1>
+
+  <label class="group-label">Active days (check-ins fire on these days)</label>
+  <div class="days" id="days"></div>
+
+  <div class="field">
+    <label>Morning goal prompt starts at (hour, 24h)</label>
+    <input type="number" id="workStart" min="0" max="23" />
+  </div>
+  <div class="field">
+    <label>Learning + dashboard prompt hour (24h)</label>
+    <input type="number" id="learnHour" min="0" max="23" />
+  </div>
+  <div class="field checkbox">
+    <input type="checkbox" id="launch" />
+    <label for="launch">Launch at login (recommended)</label>
+  </div>
+
+  <button id="save">Save</button>
+  <div class="saved" id="saved"></div>
+
+  <script src="settings.js"></script>
+</body>
+</html>

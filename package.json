@@ -1,0 +1,26 @@
+{
+  "name": "work-tracking-app",
+  "productName": "Work Tracker",
+  "version": "0.1.0",
+  "description": "A menu-bar app that tracks daily achievement and learning with hourly check-ins and a weekly dashboard.",
+  "main": "src/main/main.js",
+  "author": "Kevin",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron-forge start",
+    "dev": "electron-forge start -- --test",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "vendor": "node scripts/copy-vendor.js"
+  },
+  "dependencies": {
+    "electron-store": "^8.2.0"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^7.6.0",
+    "@electron-forge/maker-dmg": "^7.6.0",
+    "@electron-forge/maker-zip": "^7.6.0",
+    "chart.js": "^4.4.7",
+    "electron": "^33.2.1"
+  }
+}

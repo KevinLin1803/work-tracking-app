@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline';" />
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+  <header>
+    <div>
+      <div class="eyebrow">WORK TRACKER</div>
+      <h1 id="weeklabel">This week</h1>
+    </div>
+    <div class="nav">
+      <button id="prev">‹ Prev</button>
+      <button id="today">This week</button>
+      <button id="next">Next ›</button>
+    </div>
+  </header>
+
+  <section class="totals">
+    <div class="stat"><div class="num" id="totalAch">0</div><div class="cap">Achievements</div></div>
+    <div class="stat"><div class="num" id="totalLearn">0</div><div class="cap">Days with learning</div></div>
+  </section>
+
+  <section class="chartwrap">
+    <canvas id="chart" height="130"></canvas>
+  </section>
+
+  <section id="cards" class="cards"></section>
+
+  <script src="../vendor/chart.min.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>
