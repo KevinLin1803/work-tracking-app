@@ -92,7 +92,7 @@ window.api.onPrompt((item) => {
     renderMulti();
   } else if (item.type === 'hourly') {
     eyebrow.textContent = `CHECK-IN · ${hourRange(item.hour)}`;
-    label.textContent = 'What did you get done?';
+    label.textContent = 'What did you achieve in the past hour?';
     renderMulti();
   } else if (item.type === 'learning') {
     eyebrow.textContent = 'END OF DAY';

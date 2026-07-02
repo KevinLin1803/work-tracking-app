@@ -22,7 +22,7 @@ function textFor(item) {
     return { title: 'Work Tracker', body: 'What is your main goal today?' };
   }
   if (item.type === 'hourly') {
-    return { title: 'Hourly check-in', body: `What did you get done (${hourLabel(item.hour)})?` };
+    return { title: 'Hourly check-in', body: 'What did you achieve in the past hour?' };
   }
   if (item.type === 'learning') {
     return { title: 'End of day', body: 'What did you learn at work today?' };
