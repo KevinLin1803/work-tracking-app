@@ -8,6 +8,8 @@ const { IPC } = require('./constants');
 function register({ onChange }) {
   const changed = () => { if (onChange) onChange(); };
 
+  ipcMain.on(IPC.RESIZE, (_e, height) => windows.resizeInput(height));
+
   ipcMain.handle(IPC.GET_GOAL, () => {
     const d = store.getDay();
     return d ? d.primaryGoal : '';

@@ -97,7 +97,12 @@ function getWeek(offset = 0) {
     const achievements = Object.keys(entries)
       .filter((h) => entries[h] && entries[h].text)
       .sort((a, b) => Number(a) - Number(b))
-      .map((h) => ({ hour: Number(h), text: entries[h].text }));
+      .map((h) => ({
+        hour: Number(h),
+        text: entries[h].text,
+        // Each saved line is a separate "thing you did".
+        items: String(entries[h].text).split('\n').map((s) => s.trim()).filter(Boolean),
+      }));
     return {
       dateKey: key,
       dow,

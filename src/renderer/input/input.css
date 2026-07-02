@@ -1,5 +1,5 @@
 :root {
-  --red: #e5453d;          /* modern cinnabar */
+  --red: #e5453d;
   --red-deep: #c1352f;
   --ink: #ffffff;
   --muted: rgba(255, 255, 255, 0.66);
@@ -8,11 +8,10 @@
   --mono: ui-monospace, "SF Mono", Menlo, monospace;
 }
 * { box-sizing: border-box; }
-html, body { margin: 0; height: 100%; background: transparent; font-family: var(--sans); }
+html, body { margin: 0; background: transparent; font-family: var(--sans); }
 body { -webkit-app-region: drag; padding: 8px; }
 
 .card {
-  height: 100%;
   border-radius: 20px;
   padding: 18px 20px;
   background: linear-gradient(152deg, var(--red), var(--red-deep));
@@ -22,28 +21,41 @@ body { -webkit-app-region: drag; padding: 8px; }
 @keyframes rise { from { opacity: 0; transform: translateY(-8px); } }
 @media (prefers-reduced-motion: reduce) { .card { animation: none; } }
 
-.eyebrow {
-  font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em;
-  color: rgba(255, 255, 255, 0.72); font-weight: 600; text-transform: uppercase;
-}
-.label {
-  font-size: 19px; font-weight: 650; line-height: 1.2; color: var(--ink);
-  margin: 8px 0 14px; letter-spacing: -0.02em;
-}
+.eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; color: rgba(255, 255, 255, 0.72); font-weight: 600; text-transform: uppercase; }
+.label { font-size: 19px; font-weight: 650; line-height: 1.2; color: var(--ink); margin: 8px 0 13px; letter-spacing: -0.02em; }
 form { -webkit-app-region: no-drag; }
+
+.field-row { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
+.field-row input {
+  flex: 1; border: none; border-radius: 11px; background: var(--field); color: var(--ink);
+  padding: 10px 12px; font-size: 13px; font-family: var(--sans); outline: none;
+}
+.field-row input::placeholder { color: rgba(255, 255, 255, 0.5); }
+.field-row input:focus { box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.55); }
+.field-row .remove {
+  background: transparent; border: none; color: rgba(255, 255, 255, 0.6);
+  font-size: 17px; line-height: 1; cursor: pointer; width: 24px; height: 24px; border-radius: 7px; flex: none;
+}
+.field-row .remove:hover { background: rgba(255, 255, 255, 0.16); color: #fff; }
+
 textarea {
-  width: 100%; resize: none; border-radius: 12px; border: none;
-  background: var(--field); color: var(--ink); padding: 11px 12px; font-size: 13px;
-  font-family: var(--sans); outline: none; line-height: 1.4;
+  width: 100%; resize: none; border-radius: 11px; border: none; background: var(--field);
+  color: var(--ink); padding: 11px 12px; font-size: 13px; font-family: var(--sans); outline: none; line-height: 1.4;
 }
 textarea::placeholder { color: rgba(255, 255, 255, 0.5); }
 textarea:focus { box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.55); }
-.row { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; }
+
+.add {
+  background: transparent; border: 1px dashed rgba(255, 255, 255, 0.42); color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px; padding: 7px 12px; font-size: 12px; font-weight: 600; cursor: pointer; margin-bottom: 2px;
+}
+.add:hover { background: rgba(255, 255, 255, 0.12); }
+
+.row { display: flex; align-items: center; justify-content: space-between; margin-top: 13px; }
 .hint { color: var(--muted); font-size: 11px; font-family: var(--mono); }
-button {
-  -webkit-app-region: no-drag;
+button.save {
   background: #ffffff; color: var(--red-deep); border: none; border-radius: 999px;
   padding: 8px 20px; font-size: 13px; font-weight: 700; cursor: pointer; letter-spacing: -0.01em;
 }
-button:hover { background: rgba(255, 255, 255, 0.9); }
-button:active { transform: translateY(1px); }
+button.save:hover { background: rgba(255, 255, 255, 0.9); }
+button.save:active { transform: translateY(1px); }

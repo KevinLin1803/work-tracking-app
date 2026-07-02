@@ -10,10 +10,11 @@
     <div class="eyebrow" id="eyebrow">CHECK-IN</div>
     <div class="label" id="label">Loading…</div>
     <form id="form">
-      <textarea id="field" rows="3" placeholder="Type here…" autofocus></textarea>
+      <div id="fields"></div>
+      <button type="button" id="add" class="add">+ Add another</button>
       <div class="row">
-        <span class="hint">Enter to save</span>
-        <button type="submit">Save</button>
+        <span class="hint" id="hint">Enter to add · ⌘↵ to save</span>
+        <button type="submit" class="save">Save</button>
       </div>
     </form>
   </div>

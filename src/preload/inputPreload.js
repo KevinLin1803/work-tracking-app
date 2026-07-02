@@ -5,4 +5,5 @@ const { contextBridge, ipcRenderer } = require('electron');
 contextBridge.exposeInMainWorld('api', {
   onPrompt: (cb) => ipcRenderer.on('prompt', (_e, item) => cb(item)),
   submit: (payload) => ipcRenderer.send('submit', payload),
+  resize: (height) => ipcRenderer.send('resize', height),
 });

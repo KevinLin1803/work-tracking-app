@@ -23,6 +23,7 @@ const TEST_TICK_MS = 30 * 1000;
 const IPC = {
   PROMPT: 'prompt',            // main -> input renderer: show this prompt
   SUBMIT: 'submit',            // input renderer -> main: answer text
+  RESIZE: 'resize',            // input renderer -> main: grow the box to fit its content
   GET_GOAL: 'get-goal',
   GET_WEEK: 'get-week',
   GET_SETTINGS: 'get-settings',

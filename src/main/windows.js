@@ -70,6 +70,14 @@ function hideInput() {
   if (inputWin) inputWin.hide();
 }
 
+// Grow/shrink the floating box to fit its content, staying anchored top-right.
+function resizeInput(height) {
+  if (!inputWin || inputWin.isDestroyed()) return;
+  const h = Math.max(140, Math.min(Math.round(height), 620));
+  inputWin.setContentSize(INPUT_W, h, false);
+  positionTopRight(inputWin);
+}
+
 function showDashboard() {
   if (dashWin && !dashWin.isDestroyed()) {
     dashWin.show();
@@ -114,4 +122,4 @@ function showSettings() {
   settingsWin.on('closed', () => { settingsWin = null; });
 }
 
-module.exports = { showInput, hideInput, showDashboard, showSettings };
+module.exports = { showInput, hideInput, resizeInput, showDashboard, showSettings };

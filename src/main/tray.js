@@ -10,8 +10,9 @@ let currentActions = null;
 
 function goalText() {
   const d = store.getDay();
-  const g = d && d.primaryGoal ? d.primaryGoal : 'No goal set yet';
-  return g;
+  if (!d || !d.primaryGoal) return 'No goal set yet';
+  // Goals can be multiple lines; show them inline separated by dots.
+  return String(d.primaryGoal).split('\n').map((s) => s.trim()).filter(Boolean).join('  ·  ');
 }
 
 function build() {

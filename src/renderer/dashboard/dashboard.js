@@ -33,11 +33,18 @@ function drawCards(week) {
   for (const d of shown) {
     const card = document.createElement('div');
     card.className = 'daycard' + (d.isActive ? ' active' : '');
-    const items = d.achievements.map((a) => `<li><b>${hourRange(a.hour)}</b> — ${escapeHtml(a.text)}</li>`).join('');
+    // Each achievement can hold several items; show the hour once, then one bullet per item.
+    const items = d.achievements.map((a) => {
+      const lines = a.items && a.items.length ? a.items : [a.text];
+      return lines.map((t, i) => `<li>${i === 0 ? `<b>${hourRange(a.hour)}</b> ` : ''}${escapeHtml(t)}</li>`).join('');
+    }).join('');
+    const goalStr = d.primaryGoal
+      ? escapeHtml(String(d.primaryGoal).split('\n').map((s) => s.trim()).filter(Boolean).join('  ·  '))
+      : '';
     card.innerHTML = `
       <h3>${d.label}</h3>
       <div class="date">${d.dateKey}</div>
-      ${d.primaryGoal ? `<div class="goal">Goal: ${escapeHtml(d.primaryGoal)}</div>` : ''}
+      ${goalStr ? `<div class="goal">Goals: ${goalStr}</div>` : ''}
       ${items ? `<ul>${items}</ul>` : '<div class="empty">No achievements logged</div>'}
       <div class="learn"><span class="k">LEARNED</span><br/>${d.learning ? escapeHtml(d.learning) : '<span class="empty">—</span>'}</div>
     `;
