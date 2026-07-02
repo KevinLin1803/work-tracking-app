@@ -10,17 +10,17 @@ function hourRange(hour) {
 function drawChart(week) {
   const labels = week.map((d) => d.label);
   const data = week.map((d) => d.achievementCount);
-  const colors = week.map((d) => (d.isActive ? '#d9a94e' : 'rgba(217,169,78,0.20)'));
+  const colors = week.map((d) => (d.isActive ? '#e5453d' : 'rgba(255,255,255,0.10)'));
   const ctx = document.getElementById('chart');
   if (chart) chart.destroy();
   chart = new Chart(ctx, {
     type: 'bar',
-    data: { labels, datasets: [{ label: 'Achievements', data, backgroundColor: colors, borderRadius: 5, maxBarThickness: 46 }] },
+    data: { labels, datasets: [{ label: 'Achievements', data, backgroundColor: colors, borderRadius: 6, maxBarThickness: 44 }] },
     options: {
       plugins: { legend: { display: false } },
       scales: {
-        y: { beginAtZero: true, ticks: { precision: 0, color: 'rgba(247,236,226,0.55)' }, grid: { color: 'rgba(217,169,78,0.12)' } },
-        x: { ticks: { color: 'rgba(247,236,226,0.55)' }, grid: { display: false } },
+        y: { beginAtZero: true, ticks: { precision: 0, color: 'rgba(244,241,239,0.5)' }, grid: { color: 'rgba(255,255,255,0.06)' } },
+        x: { ticks: { color: 'rgba(244,241,239,0.5)' }, grid: { display: false } },
       },
     },
   });

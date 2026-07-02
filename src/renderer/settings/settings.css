@@ -1,36 +1,35 @@
 :root {
-  --ground: #240f0f;
-  --panel: #3a1616;
-  --gold: #d9a94e;
-  --gold-soft: #e8c77e;
-  --ink: #f7ece2;
-  --muted: rgba(247, 236, 226, 0.58);
-  --hair: rgba(217, 169, 78, 0.28);
-  --field: rgba(0, 0, 0, 0.22);
-  --serif: ui-serif, "New York", Georgia, serif;
-  --sans: -apple-system, system-ui, sans-serif;
+  --bg: #131215;
+  --surface: #1c1b20;
+  --red: #e5453d;
+  --red-soft: #ff6b63;
+  --ink: #f4f1ef;
+  --muted: rgba(244, 241, 239, 0.56);
+  --line: rgba(255, 255, 255, 0.09);
+  --field: rgba(255, 255, 255, 0.06);
+  --sans: -apple-system, "SF Pro Text", system-ui, sans-serif;
   --mono: ui-monospace, "SF Mono", Menlo, monospace;
 }
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--ground); color: var(--ink); font-family: var(--sans); padding: 24px 26px; }
-.eyebrow { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; color: var(--gold); font-weight: 700; }
-.eyebrow::before { content: ""; width: 10px; height: 10px; border-radius: 2px; background: var(--gold); box-shadow: 0 0 0 2px rgba(217,169,78,0.22); }
-h1 { font-family: var(--serif); margin: 8px 0 20px; font-size: 24px; font-weight: 600; letter-spacing: -0.01em; }
-.group-label { display: block; color: var(--muted); font-size: 11px; margin-bottom: 9px; font-family: var(--mono); letter-spacing: 0.08em; text-transform: uppercase; }
-.days { display: flex; gap: 6px; margin-bottom: 20px; flex-wrap: wrap; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); padding: 26px 28px; }
+.eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; color: var(--red-soft); font-weight: 600; text-transform: uppercase; }
+h1 { margin: 8px 0 22px; font-size: 24px; font-weight: 680; letter-spacing: -0.02em; }
+.group-label { display: block; color: var(--muted); font-size: 11px; margin-bottom: 10px; font-family: var(--mono); letter-spacing: 0.06em; text-transform: uppercase; }
+.days { display: flex; gap: 7px; margin-bottom: 22px; flex-wrap: wrap; }
 .day {
-  border: 1px solid var(--hair); border-radius: 999px; padding: 8px 13px; font-size: 12px;
-  cursor: pointer; user-select: none; background: transparent; color: var(--ink); font-family: var(--mono);
+  border: 1px solid var(--line); border-radius: 10px; padding: 9px 13px; font-size: 12px;
+  cursor: pointer; user-select: none; background: var(--surface); color: var(--ink); transition: all 0.12s ease;
 }
-.day.on { background: linear-gradient(180deg, var(--gold-soft), var(--gold)); color: #5c1512; border-color: var(--gold); font-weight: 700; }
-.field { margin-bottom: 16px; }
-.field label { display: block; color: var(--muted); font-size: 11px; margin-bottom: 6px; font-family: var(--mono); letter-spacing: 0.06em; text-transform: uppercase; }
-.field input[type=number] { width: 96px; background: var(--field); color: var(--ink); border: 1px solid var(--hair); border-radius: 9px; padding: 8px 10px; font-size: 14px; font-family: var(--mono); outline: none; }
-.field input[type=number]:focus { border-color: var(--gold); }
+.day:hover { border-color: rgba(229, 69, 61, 0.5); }
+.day.on { background: var(--red); color: #fff; border-color: var(--red); font-weight: 650; }
+.field { margin-bottom: 18px; }
+.field label { display: block; color: var(--muted); font-size: 11px; margin-bottom: 7px; font-family: var(--mono); letter-spacing: 0.04em; text-transform: uppercase; }
+.field input[type=number] { width: 96px; background: var(--field); color: var(--ink); border: 1px solid var(--line); border-radius: 10px; padding: 9px 11px; font-size: 14px; outline: none; }
+.field input[type=number]:focus { border-color: var(--red); }
 .field.checkbox { display: flex; align-items: center; gap: 9px; }
 .field.checkbox label { margin: 0; color: var(--ink); font-size: 13px; text-transform: none; letter-spacing: 0; font-family: var(--sans); }
-.field.checkbox input { accent-color: var(--gold); width: 16px; height: 16px; }
-button { background: linear-gradient(180deg, var(--gold-soft), var(--gold)); color: #5c1512; border: none; border-radius: 9px; padding: 10px 20px; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 8px; }
-button:hover { filter: brightness(1.06); }
+.field.checkbox input { accent-color: var(--red); width: 16px; height: 16px; }
+button { background: var(--red); color: #fff; border: none; border-radius: 10px; padding: 10px 22px; font-size: 14px; font-weight: 650; cursor: pointer; margin-top: 8px; }
+button:hover { background: var(--red-soft); }
 button:active { transform: translateY(1px); }
-.saved { color: var(--gold-soft); font-size: 12px; margin-top: 12px; height: 14px; font-family: var(--mono); }
+.saved { color: var(--red-soft); font-size: 12px; margin-top: 12px; height: 14px; font-family: var(--mono); }

@@ -1,58 +1,44 @@
 :root {
-  --ground: #240f0f;        /* warm near-black maroon */
-  --panel: #3a1616;         /* lacquer panel */
-  --panel-hi: #4a1c1a;
-  --gold: #d9a94e;          /* antique gold */
-  --gold-soft: #e8c77e;
-  --ink: #f7ece2;           /* rice-paper */
-  --muted: rgba(247, 236, 226, 0.58);
-  --hair: rgba(217, 169, 78, 0.22);
-  --hair-strong: rgba(217, 169, 78, 0.42);
-  --serif: ui-serif, "New York", Georgia, serif;
-  --sans: -apple-system, system-ui, sans-serif;
+  --bg: #131215;            /* warm near-black */
+  --surface: #1c1b20;
+  --surface-2: #232228;
+  --red: #e5453d;           /* modern cinnabar accent */
+  --red-soft: #ff6b63;
+  --ink: #f4f1ef;
+  --muted: rgba(244, 241, 239, 0.56);
+  --line: rgba(255, 255, 255, 0.09);
+  --sans: -apple-system, "SF Pro Text", system-ui, sans-serif;
   --mono: ui-monospace, "SF Mono", Menlo, monospace;
 }
 * { box-sizing: border-box; }
-body {
-  margin: 0; background: var(--ground); color: var(--ink);
-  font-family: var(--sans); padding: 28px 30px 44px;
-}
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); padding: 30px 32px 44px; }
 
-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 22px; }
-.eyebrow {
-  display: flex; align-items: center; gap: 8px;
-  font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; color: var(--gold); font-weight: 700;
-}
-.eyebrow::before { content: ""; width: 10px; height: 10px; border-radius: 2px; background: var(--gold); box-shadow: 0 0 0 2px rgba(217,169,78,0.22); }
-h1 { font-family: var(--serif); margin: 8px 0 0; font-size: 30px; font-weight: 600; letter-spacing: -0.015em; }
+header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 24px; }
+.eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; color: var(--red-soft); font-weight: 600; text-transform: uppercase; }
+h1 { margin: 8px 0 0; font-size: 30px; font-weight: 680; letter-spacing: -0.03em; }
 .nav button {
-  background: transparent; color: var(--ink); border: 1px solid var(--hair-strong);
-  border-radius: 999px; padding: 7px 14px; margin-left: 6px; cursor: pointer; font-size: 12px; font-family: var(--mono);
+  background: var(--surface); color: var(--ink); border: 1px solid var(--line);
+  border-radius: 10px; padding: 7px 13px; margin-left: 6px; cursor: pointer; font-size: 12px;
 }
-.nav button:hover { background: var(--panel); border-color: var(--gold); }
+.nav button:hover { border-color: var(--red); }
 
-/* The two measures of productivity, given hero treatment. */
-.totals { display: flex; gap: 16px; margin-bottom: 22px; }
-.stat {
-  position: relative; flex: 1;
-  background: var(--panel); border: 1px solid var(--hair);
-  border-radius: 14px; padding: 18px 20px;
-}
-.stat::after { content: ""; position: absolute; inset: 5px; border: 1px solid rgba(217,169,78,0.14); border-radius: 10px; pointer-events: none; }
-.num { font-family: var(--serif); font-size: 40px; font-weight: 600; color: var(--gold-soft); line-height: 1; font-variant-numeric: tabular-nums; }
-.cap { color: var(--muted); font-size: 12px; margin-top: 6px; font-family: var(--mono); letter-spacing: 0.08em; text-transform: uppercase; }
+/* Two measures of productivity, given clean modern hero treatment. */
+.totals { display: flex; gap: 16px; margin-bottom: 24px; }
+.stat { flex: 1; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 20px 22px; }
+.num { font-size: 44px; font-weight: 720; color: var(--red-soft); line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.cap { color: var(--muted); font-size: 12px; margin-top: 8px; letter-spacing: 0.02em; }
 
-.chartwrap { background: var(--panel); border: 1px solid var(--hair); border-radius: 14px; padding: 18px; margin-bottom: 24px; }
+.chartwrap { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 20px; margin-bottom: 26px; }
 
 .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.daycard { position: relative; background: var(--panel); border: 1px solid var(--hair); border-radius: 14px; padding: 16px 18px; }
-.daycard.active { border-color: var(--hair-strong); background: var(--panel-hi); }
-.daycard h3 { font-family: var(--serif); margin: 0 0 2px; font-size: 17px; font-weight: 600; }
-.daycard .date { color: var(--muted); font-size: 11px; margin-bottom: 10px; font-family: var(--mono); }
-.daycard .goal { color: var(--gold-soft); font-size: 12px; margin-bottom: 10px; font-style: italic; opacity: 0.9; }
-.daycard ul { margin: 0 0 10px; padding-left: 16px; }
-.daycard li { font-size: 13px; margin-bottom: 4px; line-height: 1.35; }
-.daycard li b { color: var(--gold); font-family: var(--mono); font-size: 11px; }
-.learn { border-top: 1px solid var(--hair); padding-top: 10px; font-size: 12.5px; line-height: 1.4; }
-.learn .k { display: inline-block; color: var(--gold); font-family: var(--mono); font-weight: 700; letter-spacing: 0.12em; font-size: 10px; margin-bottom: 4px; }
-.empty { color: var(--muted); font-size: 12px; font-style: italic; }
+.daycard { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; }
+.daycard.active { background: var(--surface-2); border-color: rgba(229, 69, 61, 0.35); }
+.daycard h3 { margin: 0 0 2px; font-size: 16px; font-weight: 660; letter-spacing: -0.01em; }
+.daycard .date { color: var(--muted); font-size: 11px; margin-bottom: 12px; font-family: var(--mono); }
+.daycard .goal { color: var(--muted); font-size: 12px; margin-bottom: 12px; }
+.daycard ul { margin: 0 0 12px; padding-left: 0; list-style: none; }
+.daycard li { font-size: 13px; margin-bottom: 6px; line-height: 1.35; }
+.daycard li b { color: var(--red-soft); font-family: var(--mono); font-size: 11px; font-weight: 600; margin-right: 4px; }
+.learn { border-top: 1px solid var(--line); padding-top: 12px; font-size: 13px; line-height: 1.45; }
+.learn .k { display: inline-block; color: var(--red-soft); font-family: var(--mono); font-weight: 600; letter-spacing: 0.1em; font-size: 10px; margin-bottom: 5px; }
+.empty { color: var(--muted); font-size: 12px; }
