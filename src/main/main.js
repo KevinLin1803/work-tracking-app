@@ -45,7 +45,13 @@ app.whenReady().then(() => {
 
   // Queue shows one prompt at a time; notifying also refreshes the tray badge.
   queue.configure({
-    notify: (item) => { notifier.notify(item); if (trayApi) trayApi.refresh(); },
+    notify: (item) => {
+      notifier.notify(item);
+      // A missing daily goal pops the box immediately (it is the "open the app" moment).
+      // Hourly and learning check-ins stay notification-first, as chosen.
+      if (item.type === 'goal') windows.showInput(item);
+      if (trayApi) trayApi.refresh();
+    },
     show: windows.showInput,
   });
   notifier.configure(() => queue.open());
